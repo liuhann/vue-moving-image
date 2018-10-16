@@ -88,7 +88,6 @@ export default {
     },
 
     zoomImage () {
-      debugger
       this.container.width = this.$el.parentElement.offsetWidth
       this.container.height = this.$el.parentElement.offsetHeight
       if (this.sizing.width && this.sizing.width !== 'auto') {
@@ -103,8 +102,8 @@ export default {
     },
 
     play () {
-      this.actualImage.width = this.$refs.image.offsetWidth
-      this.actualImage.height = this.$refs.image.offsetHeight
+      this.actualImage.width = this.$refs.image.$el.offsetWidth
+      this.actualImage.height = this.$refs.image.$el.offsetHeight
 
       const buildIn = movings[this.moving]
       if (buildIn && buildIn.from) {
@@ -124,6 +123,7 @@ export default {
           }
         }
         this.playing = true
+        this.$refs.image.reset()
       })
     },
 

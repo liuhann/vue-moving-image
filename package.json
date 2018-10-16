@@ -11,7 +11,7 @@
     "animejs": "^2.2.0",
     "math-expression-evaluator": "^1.2.17",
     "vue": "^2.5.17",
-    "vue-anime": "^0.2.2"
+    "vue-anime": "^0.2.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
