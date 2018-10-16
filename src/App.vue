@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div style="width: 200px; height: 320px;" class="box">
+      <moving-image :url="image1" :sizing="{height: 'height'}" moving="landscape"></moving-image>
+    </div>
+    <div style="width: 360px; height: 200px;" class="box">
+      <moving-image :url="image2" :sizing="{width: 'width*1.1'}"></moving-image>
+    </div>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MovingImage from './components/MovingImage.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    MovingImage
+  },
+  data () {
+    return {
+      image1: '/3x4.jpg',
+      image2: '/4x3.jpg',
+      image3: '/ho.png',
+      image4: '/lan.png'
+    }
   }
 }
 </script>
@@ -23,6 +36,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
