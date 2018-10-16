@@ -1,6 +1,7 @@
 <template>
   <div class="moving-image" :style="containerStyle">
-    <vue-anime tag="img" :src="url" ref="image" :style="initStyle" @load="imageLoaded" :playing="playing"
+    <vue-anime tag="img" :src="url" ref="image" :style="initStyle" @load="imageLoaded"
+               :playing="playing" :duration="duration" :easing="easing" :loop="true" direction="alternate"
       :animate="animate">
     </vue-anime>
   </div>
@@ -37,7 +38,7 @@ export default {
       type: Number,
       default: 4000
     },
-    timing: {
+    easing: {
       type: String,
       default: 'linear'
     }
@@ -88,8 +89,11 @@ export default {
     },
 
     zoomImage () {
+      // set the image container
       this.container.width = this.$el.parentElement.offsetWidth
       this.container.height = this.$el.parentElement.offsetHeight
+
+      // re-cal image size
       if (this.sizing.width && this.sizing.width !== 'auto') {
         this.initStyle.width = Mexp.eval(this.sizing.width.replace(/width/g, this.container.width).replace(/height/g, this.container.height)) + 'px'
       }
@@ -105,6 +109,7 @@ export default {
       this.actualImage.width = this.$refs.image.$el.offsetWidth
       this.actualImage.height = this.$refs.image.$el.offsetHeight
 
+      // set the moving-from
       const buildIn = movings[this.moving]
       if (buildIn && buildIn.from) {
         for (let key in buildIn.from) {
@@ -113,7 +118,7 @@ export default {
           }
         }
       }
-
+      // set the moving-to (use vue-anime to render)
       this.$nextTick(() => {
         if (buildIn && buildIn.to) {
           for (let key in buildIn.to) {
