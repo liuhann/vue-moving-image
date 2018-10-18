@@ -115,10 +115,10 @@ export default {
         const imageHeight = this.$refs.image.$el.offsetHeight
         let testHeight = this.container.width * imageHeight / imageWidth
         if (testHeight < this.container.height) { // scale by height
-          this.scaleDirection = 'height'
+          this.scaleDirection = 'width'
           this.initStyle.height = this.container.height + 'px'
         } else {
-          this.scaleDirection = 'width'
+          this.scaleDirection = 'height'
           this.initStyle.width = this.container.width + 'px'
         }
       }
@@ -158,6 +158,7 @@ export default {
           }
         }
         this.playing = true
+        // begin to play
         this.$refs.image.reset()
       })
     },
@@ -169,7 +170,11 @@ export default {
       } else if (typeof this.moving === 'function') {
         buildIn = this.moving()
       } else {
-
+        if (this.scaleDirection === 'width') {
+          buildIn = movings['landscape']
+        } else {
+          buildIn = movings['portrait']
+        }
       }
       return buildIn
     },
