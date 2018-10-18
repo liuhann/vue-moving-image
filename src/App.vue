@@ -4,9 +4,14 @@
       <moving-image :url="image1" :sizing="{height: 'height'}" moving="landscape"></moving-image>
     </div>
     <div style="width: 360px; height: 200px;" class="box">
-      <moving-image :url="image2" :sizing="{width: 'width*1.1'}"></moving-image>
+      <moving-image :url="image2" :sizing="{width: 'width*1.1'}" moving="portrait"></moving-image>
     </div>
-
+    <div style="width: 360px; height: 360px;" class="box">
+      <moving-image :url="image2" :sizing="{height: 'height*1.1'}" moving="bottomRight"></moving-image>
+    </div>
+    <div style="width: 360px; height: 360px;" class="box">
+      <moving-image :url="image2" :sizing="{height: 'height*1.1'}" moving="zoom"></moving-image>
+    </div>
   </div>
 </template>
 

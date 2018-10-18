@@ -1,7 +1,7 @@
 <template>
   <div class="moving-image" :style="containerStyle">
     <vue-anime tag="img" :src="url" ref="image" :style="initStyle" @load="imageLoaded"
-               :playing="playing" :duration="duration" :easing="easing" :loop="true" direction="alternate"
+               :playing="playing" :duration="duration" :easing="easing" :loop="true" :direction="direction"
       :animate="animate">
     </vue-anime>
   </div>
@@ -41,6 +41,10 @@ export default {
     easing: {
       type: String,
       default: 'linear'
+    },
+    direction: {
+      type: String,
+      default: 'alternate'
     }
   },
   data () {
