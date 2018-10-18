@@ -49,6 +49,7 @@ export default {
   },
   data () {
     return {
+      scaleDirection: '', //
       playing: false,
       container: {
         width: 100,
@@ -98,15 +99,40 @@ export default {
       this.container.height = this.$el.parentElement.offsetHeight
 
       // re-cal image size
-      if (this.sizing.width && this.sizing.width !== 'auto') {
+      let isSet = false
+      if (this.isWidthSet()) {
+        isSet = true
+        this.scaleDirection = 'height'
         this.initStyle.width = Mexp.eval(this.sizing.width.replace(/width/g, this.container.width).replace(/height/g, this.container.height)) + 'px'
       }
-      if (this.sizing.height && this.sizing.height !== 'auto') {
+      if (this.isHeightSet()) {
+        isSet = true
+        this.scaleDirection = 'width'
         this.initStyle.height = Mexp.eval(this.sizing.height.replace(/width/g, this.container.width).replace(/height/g, this.container.height)) + 'px'
+      }
+      if (!isSet) {
+        const imageWidth = this.$refs.image.$el.offsetWidth
+        const imageHeight = this.$refs.image.$el.offsetHeight
+        let testHeight = this.container.width * imageHeight / imageWidth
+        if (testHeight < this.container.height) { // scale by height
+          this.scaleDirection = 'height'
+          this.initStyle.height = this.container.height + 'px'
+        } else {
+          this.scaleDirection = 'width'
+          this.initStyle.width = this.container.width + 'px'
+        }
       }
       this.$nextTick(() => {
         this.play()
       })
+    },
+
+    isWidthSet () {
+      return this.sizing.width && this.sizing.width !== 'auto'
+    },
+
+    isHeightSet () {
+      return this.sizing.height && this.sizing.height !== 'auto'
     },
 
     play () {
@@ -114,7 +140,7 @@ export default {
       this.actualImage.height = this.$refs.image.$el.offsetHeight
 
       // set the moving-from
-      const buildIn = movings[this.moving]
+      const buildIn = this.getAnimation()
       if (buildIn && buildIn.from) {
         for (let key in buildIn.from) {
           if (buildIn.from[key]) {
@@ -136,14 +162,23 @@ export default {
       })
     },
 
+    getAnimation () {
+      let buildIn = null
+      if (typeof this.moving === 'string') {
+        buildIn = movings[this.moving]
+      } else if (typeof this.moving === 'function') {
+        buildIn = this.moving()
+      } else {
+
+      }
+      return buildIn
+    },
+
     eval (expr) {
       if (typeof expr === 'string') {
         return expr
       } else if (typeof expr === 'function') {
-        return expr({
-          actualImage: this.actualImage,
-          container: this.container
-        })
+        return expr(this.$data)
       }
     }
   }
