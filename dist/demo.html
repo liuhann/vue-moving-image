@@ -1,8 +1,17 @@
 <meta charset="utf-8">
 <title>MovingImage demo</title>
+<script src="https://unpkg.com/vue"></script>
 <script src="./MovingImage.umd.js"></script>
 <link rel="stylesheet" href="./MovingImage.css">
 
+<div id="app">
+  <demo></demo>
+</div>
+
 <script>
-console.log(MovingImage)
+new Vue({
+  components: {
+    demo: MovingImage
+  }
+}).$mount('#app')
 </script>

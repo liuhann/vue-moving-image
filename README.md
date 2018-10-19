@@ -3,6 +3,8 @@ An image show and moving component for vue . based on vue-anime and animejs
 
 ## Sample
 
+codepen: https://codepen.io/liuhan/pen/LgmzpP
+
 ```html
 <div style="width: 200px; height: 200px;" class="box">
   <moving-image :url="image2"></moving-image>
@@ -28,34 +30,34 @@ moving-image must have a fixed-size container in order to determine how to cover
 
 ## Props
 ```json
-{
-url: {
-  type: String
-},
-sizing: {
-  type: [Object],
-  default () {
-    return {}
-  }
-},
-moving: {
-  type: String
-},
-delay: {
-  type: Number,
-  default: 0
-},
-duration: {
-  type: Number,
-  default: 4000
-},
-easing: {
-  type: String,
-  default: 'linear'
-},
-direction: {
-  type: String,
-  default: 'alternate'
-}
-}
+    {
+        url: {
+          type: String
+        },
+        sizing: {
+          type: [Object],
+          default () {
+            return {}
+          }
+        },
+        moving: {
+          type: String
+        },
+        delay: {
+          type: Number,
+          default: 0
+        },
+        duration: {
+          type: Number,
+          default: 4000
+        },
+        easing: {
+          type: String,
+          default: 'linear'
+        },
+        direction: {
+          type: String,
+          default: 'alternate'
+        }
+    }
 ```
