@@ -1,6 +1,7 @@
 {
   "name": "vue-moving-image",
   "version": "0.1.0",
+  "main": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
