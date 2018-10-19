@@ -1,10 +1,10 @@
 {
   "name": "vue-moving-image",
   "version": "0.1.0",
-  "main": "src/index.js",
+  "main": "dist/MovingImage.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name MovingImage src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
